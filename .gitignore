@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+.vs/
+
+# Rider/JetBrains
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+
+# Logs
+*.log
+
+# Relatórios gerados pelo Job (arquivos de dados, não de código)
+Jobs/Relatorios/*.txt
+
+# Certificados e secrets locais
+*.pfx
+*.p12
+
+# Configurações com credenciais (use appsettings.Example.json como template)
+**/appsettings.Development.json

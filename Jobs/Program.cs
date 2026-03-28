@@ -4,31 +4,18 @@ using Jobs.Jobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// obrigatório para Render
-builder.WebHost.UseUrls("http://0.0.0.0:8080");
-
-builder.Services.AddRouting();
-
-builder.Services.AddDbContext(builder.Configuration);
-builder.Services.AddRepositories();
-builder.Services.AddHangfireConfig(builder.Configuration);
+builder.Services.AddJobsDependencies(builder.Configuration);
 
 builder.Services.AddScoped<RelatorioVendasJob>();
 builder.Services.AddScoped<RelatorioLogsJob>();
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
-app.UseRouting();
+app.UseHangfireDashboard("/hangfire");
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("Jobs running");
-    });
-
-    endpoints.MapHangfireDashboard("/hangfire");
-});
+app.MapHealthChecks("/health");
 
 RecurringJob.AddOrUpdate<RelatorioVendasJob>(
     "relatorio-vendas",
