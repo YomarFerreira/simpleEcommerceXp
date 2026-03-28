@@ -9,7 +9,15 @@
       "Bash(curl:*)",
       "Bash(BASE=\"https://localhost:7117\" echo \"=== CLIENTES ===\" curl -s $BASE/api/clientes --insecure)",
       "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f''''ID {c[\"\"id\"\"]}: {c[\"\"nome\"\"]}''''\\) for c in data]\" echo \"\" echo \"=== TOTAL PRODUTOS ===\" curl -s $BASE/api/produtos --insecure)",
-      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(f''''Total: {len\\(data\\)} produtos, IDs {data[0][\"\"id\"\"]} a {data[-1][\"\"id\"\"]}''''\\)\")"
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(f''''Total: {len\\(data\\)} produtos, IDs {data[0][\"\"id\"\"]} a {data[-1][\"\"id\"\"]}''''\\)\")",
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:dotnetevangelist.net)",
+      "WebFetch(domain:community.render.com)",
+      "WebFetch(domain:feedback.render.com)",
+      "WebFetch(domain:www.npgsql.org)",
+      "Bash(xargs cat:*)"
     ]
   }
 }
