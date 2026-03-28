@@ -13,12 +13,16 @@ builder.Services.AddScoped<RelatorioLogsJob>();
 
 var app = builder.Build();
 
+app.UseRouting();
+
 app.UseHangfireDashboard("/hangfire");
+
+app.MapGet("/", () => "Jobs running");
 
 RecurringJob.AddOrUpdate<RelatorioVendasJob>(
     "relatorio-vendas",
     job => job.Executar(),
-    Cron.Hourly());
+    "0 */6 * * *");
 
 RecurringJob.AddOrUpdate<RelatorioLogsJob>(
     "relatorio-logs",
