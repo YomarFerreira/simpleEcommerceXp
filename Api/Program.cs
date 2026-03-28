@@ -5,11 +5,19 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+    ?? builder.Configuration.GetConnectionString("Default");
+
+Console.WriteLine($"Api - DATABASE_URL: {(Environment.GetEnvironmentVariable("DATABASE_URL") is null ? "NOT SET (usando appsettings)" : "OK")}");
+
+if (string.IsNullOrEmpty(connectionString))
+    throw new InvalidOperationException("Api - Connection string não configurada.");
+
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();

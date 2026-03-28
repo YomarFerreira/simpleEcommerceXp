@@ -5,7 +5,15 @@ using Jobs.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddJobsDependencies(builder.Configuration);
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+    ?? builder.Configuration.GetConnectionString("Default");
+
+Console.WriteLine($"Jobs - DATABASE_URL: {(Environment.GetEnvironmentVariable("DATABASE_URL") is null ? "NOT SET (usando appsettings)" : "OK")}");
+
+if (string.IsNullOrEmpty(connectionString))
+    throw new InvalidOperationException("Jobs - Connection string não configurada.");
+
+builder.Services.AddJobsDependencies(builder.Configuration, connectionString);
 
 builder.Services.AddScoped<RelatorioVendasJob>();
 builder.Services.AddScoped<RelatorioLogsJob>();

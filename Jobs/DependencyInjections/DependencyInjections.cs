@@ -10,14 +10,14 @@ namespace Jobs.DependencyInjections
 {
     public static class DependencyInjections
     {
-        public static IServiceCollection AddJobsDependencies(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddJobsDependencies(this IServiceCollection services, IConfiguration configuration, string connectionString)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("Default")));
+                options.UseNpgsql(connectionString));
 
             services.AddHangfire(config =>
                 config.UsePostgreSqlStorage(options =>
-                    options.UseNpgsqlConnection(configuration.GetConnectionString("Default"))));
+                    options.UseNpgsqlConnection(connectionString)));
 
             services.AddHangfireServer();
 
