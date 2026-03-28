@@ -10,7 +10,7 @@ namespace Jobs.DependencyInjections
 {
     public static class DependencyInjections
     {
-        public static IServiceCollection AddJobsDependencies(this IServiceCollection services, IConfiguration configuration, string connectionString)
+        public static IServiceCollection AddJobsDependencies(this IServiceCollection services, IConfiguration configuration, string connectionString, string hangfireConnectionString)
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(connectionString));
@@ -19,7 +19,7 @@ namespace Jobs.DependencyInjections
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                       .UseSimpleAssemblyNameTypeSerializer()
                       .UseRecommendedSerializerSettings()
-                      .UseSQLiteStorage("Data Source=hangfire.db;"));
+                      .UseSQLiteStorage(hangfireConnectionString));
 
             services.AddHangfireServer(options =>
             {

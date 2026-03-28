@@ -15,6 +15,17 @@ Console.WriteLine($"Jobs - DATABASE_URL: {(Environment.GetEnvironmentVariable("D
 if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Jobs - Connection string não configurada.");
 
+var hangfireDbPath = Environment.GetEnvironmentVariable("HANGFIRE_DB_PATH") ?? "Data Source=data/hangfire.db;";
+Console.WriteLine($"Jobs - HANGFIRE_DB_PATH: {(Environment.GetEnvironmentVariable("HANGFIRE_DB_PATH") is null ? "NOT SET (usando data/hangfire.db local)" : "OK")}");
+
+var dbFilePath = hangfireDbPath.Replace("Data Source=", "").Split(';')[0].Trim();
+var dbDir = Path.GetDirectoryName(dbFilePath);
+if (!string.IsNullOrEmpty(dbDir) && !Directory.Exists(dbDir))
+{
+    Directory.CreateDirectory(dbDir);
+    Console.WriteLine($"Jobs - Diretório criado: {dbDir}");
+}
+
 var emailOverrides = new Dictionary<string, string?>();
 var emailSmtp        = Environment.GetEnvironmentVariable("EMAIL_SMTP");
 var emailPorta       = Environment.GetEnvironmentVariable("EMAIL_PORTA");
@@ -33,7 +44,7 @@ if (emailUrlBase     != null) emailOverrides["Email:UrlBase"]     = emailUrlBase
 if (emailOverrides.Count > 0)
     builder.Configuration.AddInMemoryCollection(emailOverrides);
 
-builder.Services.AddJobsDependencies(builder.Configuration, connectionString);
+builder.Services.AddJobsDependencies(builder.Configuration, connectionString, hangfireDbPath);
 
 builder.Services.AddScoped<RelatorioVendasJob>();
 builder.Services.AddScoped<RelatorioLogsJob>();
