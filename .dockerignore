@@ -1,0 +1,8 @@
+bin
+obj
+.vscode
+.claude
+.git
+.gitignore
+SQL
+*.md

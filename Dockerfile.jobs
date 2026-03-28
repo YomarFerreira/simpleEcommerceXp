@@ -1,0 +1,33 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
+WORKDIR /app
+
+COPY Jobs/*.csproj ./Jobs/
+COPY Domain/*.csproj ./Domain/
+COPY Infrastructure/*.csproj ./Infrastructure/
+COPY Application/*.csproj ./Application/
+
+WORKDIR /app/Jobs
+RUN dotnet restore
+
+WORKDIR /app/Domain
+RUN dotnet restore
+
+WORKDIR /app/Infrastructure
+RUN dotnet restore
+
+WORKDIR /app/Application
+RUN dotnet restore
+
+WORKDIR /app
+COPY . .
+
+RUN dotnet publish Jobs/Jobs.csproj -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+
+WORKDIR /app
+
+COPY --from=build /app/out .
+
+ENTRYPOINT ["dotnet", "Jobs.dll"]
