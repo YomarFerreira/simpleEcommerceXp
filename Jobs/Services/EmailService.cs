@@ -68,7 +68,6 @@ namespace Jobs.Services
             {
                 _logger.LogError(ex, "[Email] Falha ao enviar '{Assunto}' para {Destinatario}. Servidor: {Smtp}:{Porta}",
                     assunto, destinatario, smtp, porta);
-                throw;
             }
         }
     }

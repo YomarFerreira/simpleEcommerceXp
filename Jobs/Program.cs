@@ -40,14 +40,21 @@ app.MapGet("/email/ativar", (IEmailHabilitadoService svc) =>
     return Results.Ok("Envio de e-mails ativado.");
 });
 
+var jobOptions = new RecurringJobOptions
+{
+    MisfireHandling = MisfireHandlingMode.Ignorable
+};
+
 RecurringJob.AddOrUpdate<RelatorioVendasJob>(
     "relatorio-vendas",
     job => job.Executar(),
-    "0 */6 * * *");
+    "0 */6 * * *",
+    jobOptions);
 
 RecurringJob.AddOrUpdate<RelatorioLogsJob>(
     "relatorio-logs",
     job => job.Executar(),
-    "0 0 * * *");
+    "0 0 * * *",
+    jobOptions);
 
 app.Run();

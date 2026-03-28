@@ -21,7 +21,10 @@ namespace Jobs.DependencyInjections
                       .UseRecommendedSerializerSettings()
                       .UseSQLiteStorage("Data Source=hangfire.db;"));
 
-            services.AddHangfireServer();
+            services.AddHangfireServer(options =>
+            {
+                options.WorkerCount = 1;
+            });
 
             services.AddSingleton<IEmailHabilitadoService, EmailHabilitadoService>();
             services.AddScoped<IEmailService, EmailService>();
