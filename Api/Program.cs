@@ -44,6 +44,8 @@ var app = builder.Build();
 app.MapOpenApi();
 app.MapScalarApiReference();
 
+app.MapGet("/ping", () => "pong");
+
 app.MapControllers();
 
 app.Run();
