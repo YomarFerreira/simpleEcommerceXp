@@ -1,6 +1,7 @@
 using Api.DependencyInjections;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,18 @@ Console.WriteLine($"Api - DATABASE_URL: {(Environment.GetEnvironmentVariable("DA
 
 if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Api - Connection string não configurada.");
+
+// Testa conexão antes de iniciar
+try
+{
+    using var conn = new NpgsqlConnection(connectionString);
+    conn.Open();
+    Console.WriteLine("Api - PostgreSQL connection: OK");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Api - PostgreSQL connection FAILED: {ex.Message}");
+}
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
