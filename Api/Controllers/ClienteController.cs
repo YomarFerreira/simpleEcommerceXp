@@ -18,19 +18,22 @@ namespace Api.Controllers
         private readonly IUpdateClienteHandler _updateHandler;
         private readonly IDeleteClienteHandler _deleteHandler;
         private readonly IAlterarSenhaHandler _alterarSenhaHandler;
+        private readonly ILogger<ClienteController> _logger;
 
         public ClienteController(
             IClienteService service,
             ICreateClienteHandler createHandler,
             IUpdateClienteHandler updateHandler,
             IDeleteClienteHandler deleteHandler,
-            IAlterarSenhaHandler alterarSenhaHandler)
+            IAlterarSenhaHandler alterarSenhaHandler,
+            ILogger<ClienteController> logger)
         {
             _service = service;
             _createHandler = createHandler;
             _updateHandler = updateHandler;
             _deleteHandler = deleteHandler;
             _alterarSenhaHandler = alterarSenhaHandler;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -39,8 +42,18 @@ namespace Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<Cliente>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            var clientes = await _service.ObterTodos();
-            return Ok(clientes);
+            _logger.LogInformation("[ClienteController] GetAll iniciado");
+            try
+            {
+                var clientes = await _service.ObterTodos();
+                _logger.LogInformation("[ClienteController] GetAll concluído - {Count} clientes", clientes.Count());
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "[ClienteController] GetAll falhou");
+                throw;
+            }
         }
 
         [HttpGet("{id}")]
