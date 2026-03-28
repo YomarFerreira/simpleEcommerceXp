@@ -29,6 +29,6 @@ RecurringJob.AddOrUpdate<RelatorioVendasJob>(
 RecurringJob.AddOrUpdate<RelatorioLogsJob>(
     "relatorio-logs",
     job => job.Executar(),
-    Cron.Daily());
+    "0 0 * * *");
 
 app.Run();
