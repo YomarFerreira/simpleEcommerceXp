@@ -27,17 +27,13 @@ if (!string.IsNullOrEmpty(dbDir) && !Directory.Exists(dbDir))
 }
 
 var emailOverrides = new Dictionary<string, string?>();
-var emailSmtp        = Environment.GetEnvironmentVariable("EMAIL_SMTP");
-var emailPorta       = Environment.GetEnvironmentVariable("EMAIL_PORTA");
+var sendGridApiKey   = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
 var emailRemetente   = Environment.GetEnvironmentVariable("EMAIL_REMETENTE");
-var emailSenha       = Environment.GetEnvironmentVariable("EMAIL_SENHA");
 var emailDestinatario= Environment.GetEnvironmentVariable("EMAIL_DESTINATARIO");
 var emailUrlBase     = Environment.GetEnvironmentVariable("EMAIL_URLBASE");
 
-if (emailSmtp        != null) emailOverrides["Email:Smtp"]        = emailSmtp;
-if (emailPorta       != null) emailOverrides["Email:Porta"]       = emailPorta;
+if (sendGridApiKey   != null) emailOverrides["SendGrid:ApiKey"]   = sendGridApiKey;
 if (emailRemetente   != null) emailOverrides["Email:Remetente"]   = emailRemetente;
-if (emailSenha       != null) emailOverrides["Email:Senha"]       = emailSenha;
 if (emailDestinatario!= null) emailOverrides["Email:Destinatario"]= emailDestinatario;
 if (emailUrlBase     != null) emailOverrides["Email:UrlBase"]     = emailUrlBase;
 

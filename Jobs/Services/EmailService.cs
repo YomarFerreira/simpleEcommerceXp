@@ -1,8 +1,7 @@
-using MailKit.Net.Smtp;
-using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using MimeKit;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace Jobs.Services
 {
@@ -32,10 +31,8 @@ namespace Jobs.Services
                 return;
             }
 
-            var smtp         = _configuration["Email:Smtp"]!;
-            var porta        = int.Parse(_configuration["Email:Porta"]!);
+            var apiKey       = _configuration["SendGrid:ApiKey"]!;
             var remetente    = _configuration["Email:Remetente"]!;
-            var senha        = _configuration["Email:Senha"]!;
             var destinatario = _configuration["Email:Destinatario"]!;
             var urlBase      = _configuration["Email:UrlBase"] ?? "http://localhost:5000";
 
@@ -50,24 +47,26 @@ namespace Jobs.Services
 
             try
             {
-                var mensagem = new MimeMessage();
-                mensagem.From.Add(MailboxAddress.Parse(remetente));
-                mensagem.To.Add(MailboxAddress.Parse(destinatario));
-                mensagem.Subject = assunto;
-                mensagem.Body = new TextPart("plain") { Text = corpo + rodape };
+                var client  = new SendGridClient(apiKey);
+                var from    = new EmailAddress(remetente);
+                var to      = new EmailAddress(destinatario);
+                var message = MailHelper.CreateSingleEmail(from, to, assunto, corpo + rodape, null);
 
-                using var client = new SmtpClient();
-                await client.ConnectAsync(smtp, porta, SecureSocketOptions.StartTls);
-                await client.AuthenticateAsync(remetente, senha);
-                await client.SendAsync(mensagem);
-                await client.DisconnectAsync(true);
+                var response = await client.SendEmailAsync(message);
 
-                _logger.LogInformation("[Email] Enviado: {Assunto} → {Destinatario}", assunto, destinatario);
+                if (response.IsSuccessStatusCode)
+                    _logger.LogInformation("[Email] Enviado: {Assunto} → {Destinatario}", assunto, destinatario);
+                else
+                {
+                    var body = await response.Body.ReadAsStringAsync();
+                    _logger.LogError("[Email] Falha ao enviar '{Assunto}'. Status: {Status} | {Body}",
+                        assunto, response.StatusCode, body);
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[Email] Falha ao enviar '{Assunto}' para {Destinatario}. Servidor: {Smtp}:{Porta}",
-                    assunto, destinatario, smtp, porta);
+                _logger.LogError(ex, "[Email] Falha ao enviar '{Assunto}' para {Destinatario}.",
+                    assunto, destinatario);
             }
         }
     }

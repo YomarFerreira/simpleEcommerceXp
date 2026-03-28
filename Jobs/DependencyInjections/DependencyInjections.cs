@@ -12,8 +12,9 @@ namespace Jobs.DependencyInjections
     {
         public static IServiceCollection AddJobsDependencies(this IServiceCollection services, IConfiguration configuration, string connectionString, string hangfireConnectionString)
         {
+            var jobsConnectionString = connectionString.TrimEnd(';') + ";No Reset On Close=true;";
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(connectionString));
+                options.UseNpgsql(jobsConnectionString));
 
             services.AddHangfire(config =>
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
