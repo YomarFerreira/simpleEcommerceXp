@@ -1,6 +1,6 @@
 using Infrastructure.Data;
+using Jobs.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Jobs.Jobs
@@ -8,14 +8,14 @@ namespace Jobs.Jobs
     public class RelatorioLogsJob
     {
         private readonly AppDbContext _context;
+        private readonly IEmailService _emailService;
         private readonly ILogger<RelatorioLogsJob> _logger;
-        private readonly string _pastaRelatorios;
 
-        public RelatorioLogsJob(AppDbContext context, ILogger<RelatorioLogsJob> logger, IConfiguration configuration)
+        public RelatorioLogsJob(AppDbContext context, IEmailService emailService, ILogger<RelatorioLogsJob> logger)
         {
             _context = context;
+            _emailService = emailService;
             _logger = logger;
-            _pastaRelatorios = Path.GetFullPath(configuration["RelatoriosPath"] ?? "Relatorios");
         }
 
         public async Task Executar()
@@ -30,14 +30,9 @@ namespace Jobs.Jobs
 
             if (logs.Count == 0)
             {
-                _logger.LogInformation("[RelatorioLogs] {Data} | Nenhuma alteração no dia. Relatório não gerado.", hoje.ToString("dd/MM/yyyy"));
+                _logger.LogInformation("[RelatorioLogs] {Data} | Nenhuma alteração no dia. E-mail não enviado.", hoje.ToString("dd/MM/yyyy"));
                 return;
             }
-
-            Directory.CreateDirectory(_pastaRelatorios);
-
-            var nomeArquivo = $"relatorio_log_alteracoes_{hoje:yyyy-MM-dd}.txt";
-            var caminhoArquivo = Path.Combine(_pastaRelatorios, nomeArquivo);
 
             var porEntidade = logs.GroupBy(x => x.Entidade).OrderBy(g => g.Key);
 
@@ -49,10 +44,10 @@ namespace Jobs.Jobs
                 $"  Gerado em    : {DateTime.UtcNow:dd/MM/yyyy HH:mm:ss} UTC",
                 $"  Total        : {logs.Count} alteração(ões)",
                 "------------------------------------------------------------",
-                ""
+                "",
+                "  Por entidade:"
             };
 
-            linhas.Add("  Por entidade:");
             foreach (var grupo in porEntidade)
                 linhas.Add($"    {grupo.Key,-20} {grupo.Count(),3} alteração(ões)");
 
@@ -72,10 +67,13 @@ namespace Jobs.Jobs
             linhas.Add("");
             linhas.Add("============================================================");
 
-            await File.WriteAllLinesAsync(caminhoArquivo, linhas);
+            var assunto = $"Relatório de Log de Alterações — {hoje:dd/MM/yyyy}";
+            var corpo = string.Join(Environment.NewLine, linhas);
 
-            _logger.LogInformation("[RelatorioLogs] {Data} | {Qtd} alteração(ões) | Arquivo: {Arquivo}",
-                hoje.ToString("dd/MM/yyyy"), logs.Count, nomeArquivo);
+            await _emailService.EnviarAsync(assunto, corpo);
+
+            _logger.LogInformation("[RelatorioLogs] {Data} | {Qtd} alteração(ões) | E-mail enviado.",
+                hoje.ToString("dd/MM/yyyy"), logs.Count);
         }
     }
 }

@@ -29,3 +29,4 @@ Jobs/Relatorios/*.txt
 
 # Configurações com credenciais (use appsettings.Example.json como template)
 **/appsettings.Development.json
+**/appsettings.json

@@ -1,6 +1,7 @@
 using Hangfire;
 using Hangfire.PostgreSql;
 using Infrastructure.Data;
+using Jobs.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,9 @@ namespace Jobs.DependencyInjections
                     options.UseNpgsqlConnection(configuration.GetConnectionString("Default"))));
 
             services.AddHangfireServer();
+
+            services.AddSingleton<IEmailHabilitadoService, EmailHabilitadoService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }

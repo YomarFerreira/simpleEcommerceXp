@@ -1,7 +1,7 @@
 using Domain.Properties;
 using Infrastructure.Data;
+using Jobs.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Jobs.Jobs
@@ -9,14 +9,14 @@ namespace Jobs.Jobs
     public class RelatorioVendasJob
     {
         private readonly AppDbContext _context;
+        private readonly IEmailService _emailService;
         private readonly ILogger<RelatorioVendasJob> _logger;
-        private readonly string _pastaRelatorios;
 
-        public RelatorioVendasJob(AppDbContext context, ILogger<RelatorioVendasJob> logger, IConfiguration configuration)
+        public RelatorioVendasJob(AppDbContext context, IEmailService emailService, ILogger<RelatorioVendasJob> logger)
         {
             _context = context;
+            _emailService = emailService;
             _logger = logger;
-            _pastaRelatorios = Path.GetFullPath(configuration["RelatoriosPath"] ?? "Relatorios");
         }
 
         public async Task Executar()
@@ -33,17 +33,12 @@ namespace Jobs.Jobs
 
             if (pedidos.Count == 0)
             {
-                _logger.LogInformation("[RelatorioVendas] {Data} | Nenhuma venda no dia. Relatório não gerado.", hoje.ToString("dd/MM/yyyy"));
+                _logger.LogInformation("[RelatorioVendas] {Data} | Nenhuma venda no dia. E-mail não enviado.", hoje.ToString("dd/MM/yyyy"));
                 return;
             }
 
             var totalVendas = pedidos.Sum(x => x.ValorFinal);
             var ticketMedio = totalVendas / pedidos.Count;
-
-            Directory.CreateDirectory(_pastaRelatorios);
-
-            var nomeArquivo = $"relatorio_vendas_{hoje:yyyy-MM-dd}.txt";
-            var caminhoArquivo = Path.Combine(_pastaRelatorios, nomeArquivo);
 
             var linhas = new List<string>
             {
@@ -55,14 +50,14 @@ namespace Jobs.Jobs
                 $"  Total     : R$ {totalVendas:F2}",
                 $"  Ticket    : R$ {ticketMedio:F2}",
                 "------------------------------------------------------------",
-                ""
+                "",
+                "  Por tipo de pagamento:"
             };
 
             var porTipoPagamento = pedidos
                 .GroupBy(x => x.TipoPagamento)
                 .OrderByDescending(g => g.Count());
 
-            linhas.Add("  Por tipo de pagamento:");
             foreach (var grupo in porTipoPagamento)
                 linhas.Add($"    {grupo.Key,-20} {grupo.Count(),3} pedido(s)   R$ {grupo.Sum(x => x.ValorFinal):F2}");
 
@@ -72,19 +67,19 @@ namespace Jobs.Jobs
             linhas.Add("------------------------------------------------------------");
 
             foreach (var p in pedidos)
-            {
                 linhas.Add($"  ID {p.Id,4} | Cliente {p.IdCliente,4} | Produto {p.IdProduto,4} | " +
-                           $"R$ {p.ValorFinal:F2} | {p.TipoPagamento} | {p.NumeroParcelas}x | " +
-                           $"{p.DataCriacao:HH:mm:ss}");
-            }
+                           $"R$ {p.ValorFinal:F2} | {p.TipoPagamento} | {p.NumeroParcelas}x | {p.DataCriacao:HH:mm:ss}");
 
             linhas.Add("");
             linhas.Add("============================================================");
 
-            await File.WriteAllLinesAsync(caminhoArquivo, linhas);
+            var assunto = $"Relatório de Vendas — {hoje:dd/MM/yyyy}";
+            var corpo = string.Join(Environment.NewLine, linhas);
 
-            _logger.LogInformation("[RelatorioVendas] {Data} | {Qtd} pedido(s) | R$ {Total:F2} | Arquivo: {Arquivo}",
-                hoje.ToString("dd/MM/yyyy"), pedidos.Count, totalVendas, nomeArquivo);
+            await _emailService.EnviarAsync(assunto, corpo);
+
+            _logger.LogInformation("[RelatorioVendas] {Data} | {Qtd} pedido(s) | R$ {Total:F2} | E-mail enviado.",
+                hoje.ToString("dd/MM/yyyy"), pedidos.Count, totalVendas);
         }
     }
 }

@@ -3,11 +3,14 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /app
 
 COPY Jobs/*.csproj ./Jobs/
+COPY Application/*.csproj ./Application/
 COPY Domain/*.csproj ./Domain/
 COPY Infrastructure/*.csproj ./Infrastructure/
-COPY Application/*.csproj ./Application/
 
 WORKDIR /app/Jobs
+RUN dotnet restore
+
+WORKDIR /app/Application
 RUN dotnet restore
 
 WORKDIR /app/Domain
@@ -16,8 +19,6 @@ RUN dotnet restore
 WORKDIR /app/Infrastructure
 RUN dotnet restore
 
-WORKDIR /app/Application
-RUN dotnet restore
 
 WORKDIR /app
 COPY . .
