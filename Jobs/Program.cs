@@ -4,6 +4,7 @@ using Jobs.Jobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// For the Render
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
 
 builder.Services.AddDbContext(builder.Configuration);
@@ -15,12 +16,12 @@ builder.Services.AddScoped<RelatorioLogsJob>();
 
 var app = builder.Build();
 
-app.UseRouting();
-
-app.UseHangfireDashboard("/hangfire");
-
 app.MapGet("/", () => "Jobs running");
 
+app.MapHangfireDashboard("/hangfire");
+
+
+// JOBS
 RecurringJob.AddOrUpdate<RelatorioVendasJob>(
     "relatorio-vendas",
     job => job.Executar(),
