@@ -19,7 +19,9 @@ try
 {
     using var conn = new NpgsqlConnection(connectionString);
     conn.Open();
-    Console.WriteLine("Api - PostgreSQL connection: OK");
+    using var cmd = new NpgsqlCommand("SELECT 1", conn);
+    cmd.ExecuteScalar();
+    Console.WriteLine("Api - PostgreSQL connection + query: OK");
 }
 catch (Exception ex)
 {
