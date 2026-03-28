@@ -30,3 +30,8 @@ Jobs/Relatorios/*.txt
 # Configurações com credenciais (use appsettings.Example.json como template)
 **/appsettings.Development.json
 **/appsettings.json
+
+# Hangfire SQLite local
+hangfire.db
+hangfire.db-shm
+hangfire.db-wal

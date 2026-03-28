@@ -1,5 +1,5 @@
 using Hangfire;
-using Hangfire.PostgreSql;
+using Hangfire.SQLite;
 using Infrastructure.Data;
 using Jobs.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,8 +16,10 @@ namespace Jobs.DependencyInjections
                 options.UseNpgsql(connectionString));
 
             services.AddHangfire(config =>
-                config.UsePostgreSqlStorage(options =>
-                    options.UseNpgsqlConnection(connectionString)));
+                config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                      .UseSimpleAssemblyNameTypeSerializer()
+                      .UseRecommendedSerializerSettings()
+                      .UseSQLiteStorage("Data Source=hangfire.db;"));
 
             services.AddHangfireServer();
 

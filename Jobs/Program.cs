@@ -3,6 +3,8 @@ using Jobs.DependencyInjections;
 using Jobs.Jobs;
 using Jobs.Services;
 
+SQLitePCL.Batteries.Init();
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
