@@ -51,6 +51,7 @@ namespace Jobs.Services
                 var from    = new EmailAddress(remetente);
                 var to      = new EmailAddress(destinatario);
                 var message = MailHelper.CreateSingleEmail(from, to, assunto, corpo + rodape, null);
+                message.SetClickTracking(false, false);
 
                 var response = await client.SendEmailAsync(message);
 
