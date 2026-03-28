@@ -1,0 +1,11 @@
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\bin\Debug\net10.0\Domain.deps.json
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\bin\Debug\net10.0\Domain.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\bin\Debug\net10.0\Domain.pdb
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\refint\Domain.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\Domain.pdb
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Domain\obj\Debug\net10.0\ref\Domain.dll

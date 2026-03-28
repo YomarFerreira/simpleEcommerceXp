@@ -1,0 +1,15 @@
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\bin\Debug\net10.0\Domain.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\bin\Debug\net10.0\Domain.pdb
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\yomar\Documents\@Pos Graduação XP Educação\BootCamp 2\Módulo 5 - Desafio\Atividade\ProjectEcommerce\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll

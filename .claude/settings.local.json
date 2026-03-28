@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(BASE=\"C:/Users/yomar/Documents/@Pos Graduação XP Educação/BootCamp 2/Módulo 5 - Desafio/Atividade/ProjectEcommerce\")",
+      "Bash(__NEW_LINE_ca3b723b829ea6bd__ rm:*)",
+      "Bash(rm \"$BASE/Application/Commands/TipoPagamento/CreateTipoPagamentoCommand.cs\")",
+      "Bash(rm \"$BASE/Application/Commands/TipoPagamento/UpdateTipoPagamentoCommand.cs\")",
+      "Bash(rm \"$BASE/Application/Commands/TipoPagamento/DeleteTipoPagamentoCommand.cs\")",
+      "Bash(curl:*)",
+      "Bash(BASE=\"https://localhost:7117\" echo \"=== CLIENTES ===\" curl -s $BASE/api/clientes --insecure)",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f''''ID {c[\"\"id\"\"]}: {c[\"\"nome\"\"]}''''\\) for c in data]\" echo \"\" echo \"=== TOTAL PRODUTOS ===\" curl -s $BASE/api/produtos --insecure)",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(f''''Total: {len\\(data\\)} produtos, IDs {data[0][\"\"id\"\"]} a {data[-1][\"\"id\"\"]}''''\\)\")"
+    ]
+  }
+}

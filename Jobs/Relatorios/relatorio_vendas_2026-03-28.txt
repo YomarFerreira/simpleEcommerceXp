@@ -1,0 +1,61 @@
+============================================================
+  RELATÓRIO DE VENDAS — 28/03/2026
+============================================================
+  Gerado em : 28/03/2026 02:29:26 UTC
+  Pedidos   : 38
+  Total     : R$ 103183,00
+  Ticket    : R$ 2715,34
+------------------------------------------------------------
+
+  Por tipo de pagamento:
+    CreditoParcelado      14 pedido(s)   R$ 61805,00
+    PixUmaVez              7 pedido(s)   R$ 2823,00
+    BoletoParcelado        7 pedido(s)   R$ 33553,00
+    BoletoUmaVez           4 pedido(s)   R$ 2426,00
+    DebitoUmaVez           3 pedido(s)   R$ 882,00
+    CreditoUmaVez          2 pedido(s)   R$ 998,00
+    PixParcelado           1 pedido(s)   R$ 696,00
+
+------------------------------------------------------------
+  Detalhe dos pedidos:
+------------------------------------------------------------
+  ID    1 | Cliente    1 | Produto    1 | R$ 9494,00 | CreditoParcelado | 10x | 00:35:31
+  ID    2 | Cliente    1 | Produto   37 | R$ 279,00 | PixUmaVez | 1x | 00:36:04
+  ID    3 | Cliente    1 | Produto   69 | R$ 346,00 | DebitoUmaVez | 1x | 00:36:05
+  ID    4 | Cliente    2 | Produto   11 | R$ 4591,00 | CreditoParcelado | 6x | 00:36:06
+  ID    5 | Cliente    2 | Produto   45 | R$ 199,00 | PixUmaVez | 1x | 00:36:06
+  ID    6 | Cliente    2 | Produto  111 | R$ 394,00 | BoletoUmaVez | 1x | 00:36:07
+  ID    7 | Cliente    3 | Produto   21 | R$ 3289,00 | CreditoParcelado | 8x | 00:36:08
+  ID    8 | Cliente    3 | Produto   53 | R$ 599,00 | CreditoUmaVez | 1x | 00:36:08
+  ID    9 | Cliente    4 | Produto   29 | R$ 1292,00 | CreditoParcelado | 4x | 00:36:09
+  ID   10 | Cliente    4 | Produto   77 | R$ 219,00 | PixUmaVez | 1x | 00:36:09
+  ID   11 | Cliente    4 | Produto   61 | R$ 1494,00 | BoletoParcelado | 6x | 00:36:10
+  ID   12 | Cliente    5 | Produto   85 | R$ 2799,00 | CreditoParcelado | 10x | 00:36:11
+  ID   13 | Cliente    5 | Produto   93 | R$ 1896,00 | CreditoParcelado | 3x | 00:36:11
+  ID   14 | Cliente    6 | Produto    2 | R$ 8789,00 | CreditoParcelado | 10x | 00:36:12
+  ID   15 | Cliente    6 | Produto  101 | R$ 1299,00 | BoletoParcelado | 4x | 00:36:12
+  ID   16 | Cliente    6 | Produto   45 | R$ 194,00 | DebitoUmaVez | 1x | 00:36:13
+  ID   17 | Cliente    7 | Produto   12 | R$ 7891,00 | CreditoParcelado | 8x | 00:36:13
+  ID   18 | Cliente    7 | Produto  103 | R$ 799,00 | PixUmaVez | 1x | 00:36:14
+  ID   19 | Cliente    8 | Produto   22 | R$ 2194,00 | CreditoParcelado | 6x | 00:36:14
+  ID   20 | Cliente    8 | Produto   86 | R$ 3299,00 | CreditoParcelado | 10x | 00:36:15
+  ID   21 | Cliente    8 | Produto  112 | R$ 696,00 | PixParcelado | 3x | 00:36:15
+  ID   22 | Cliente    9 | Produto   30 | R$ 799,00 | PixUmaVez | 1x | 00:36:16
+  ID   23 | Cliente    9 | Produto   78 | R$ 294,00 | BoletoUmaVez | 1x | 00:36:16
+  ID   24 | Cliente   10 | Produto    3 | R$ 5489,00 | CreditoParcelado | 10x | 00:36:17
+  ID   25 | Cliente   10 | Produto   62 | R$ 3299,00 | CreditoParcelado | 5x | 00:36:17
+  ID   26 | Cliente   10 | Produto   38 | R$ 342,00 | DebitoUmaVez | 1x | 00:36:18
+  ID   27 | Cliente   11 | Produto   87 | R$ 4489,00 | BoletoParcelado | 12x | 00:36:18
+  ID   28 | Cliente   11 | Produto   94 | R$ 1294,00 | BoletoUmaVez | 1x | 00:36:19
+  ID   29 | Cliente   12 | Produto   13 | R$ 8989,00 | BoletoParcelado | 12x | 00:36:19
+  ID   30 | Cliente   12 | Produto   88 | R$ 5991,00 | CreditoParcelado | 10x | 00:36:20
+  ID   31 | Cliente   12 | Produto  104 | R$ 1799,00 | BoletoParcelado | 6x | 00:36:20
+  ID   32 | Cliente   13 | Produto   14 | R$ 12989,00 | BoletoParcelado | 12x | 00:36:35
+  ID   33 | Cliente   14 | Produto   46 | R$ 249,00 | PixUmaVez | 1x | 00:36:35
+  ID   34 | Cliente   15 | Produto   54 | R$ 444,00 | BoletoUmaVez | 1x | 00:36:36
+  ID   35 | Cliente   16 | Produto   70 | R$ 279,00 | PixUmaVez | 1x | 00:36:36
+  ID   36 | Cliente   17 | Produto  113 | R$ 1492,00 | CreditoParcelado | 3x | 00:36:37
+  ID   37 | Cliente   18 | Produto   95 | R$ 2494,00 | BoletoParcelado | 6x | 00:36:37
+  ID   38 | Cliente   19 | Produto   79 | R$ 399,00 | CreditoUmaVez | 1x | 00:36:38
+
+============================================================
