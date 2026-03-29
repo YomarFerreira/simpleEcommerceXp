@@ -11,5 +11,6 @@ namespace Application.Services.Interfaces
         Task<List<Pedido>> ObterPorClienteId(int clienteId);
         Task<List<Pedido>> ObterPorProdutoId(int produtoId);
         Task<List<Pedido>> ObterPorStatusEntrega(StatusEntrega statusEntrega);
+        Task<int> ObterTotal(Status? status, StatusEntrega? statusEntrega, decimal? valorMinimo, decimal? valorMaximo);
     }
 }

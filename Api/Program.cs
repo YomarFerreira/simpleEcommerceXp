@@ -22,8 +22,9 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+var apiConnectionString = connectionString.TrimEnd(';') + ";No Reset On Close=true;";
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(apiConnectionString));
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();

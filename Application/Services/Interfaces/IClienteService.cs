@@ -11,5 +11,6 @@ namespace Application.Services.Interfaces
         Task<List<Cliente>> ObterPorNome(string parteNome);
         Task<Cliente?> ObterPorEmail(string email);
         Task<Cliente?> ObterPorTelefone(string telefone);
+        Task<int> ObterTotal(Status? status);
     }
 }

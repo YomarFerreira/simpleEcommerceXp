@@ -14,5 +14,6 @@ namespace Infrastructure.Repository.Interface
         Task<List<Pedido>> GetByClienteId(int clienteId);
         Task<List<Pedido>> GetByProdutoId(int produtoId);
         Task<List<Pedido>> GetByStatusEntrega(StatusEntrega statusEntrega);
+        Task<int> CountTotal(Status? status, StatusEntrega? statusEntrega, decimal? valorMinimo, decimal? valorMaximo);
     }
 }

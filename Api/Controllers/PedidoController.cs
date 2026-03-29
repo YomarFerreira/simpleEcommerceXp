@@ -30,6 +30,20 @@ namespace Api.Controllers
             _deleteHandler = deleteHandler;
         }
 
+        [HttpGet("total")]
+        [EndpointSummary("Quantidade de pedidos")]
+        [EndpointDescription("Retorna o total de pedidos com filtros opcionais. Status: Ativo=1, Inativo=2, Cancelado=3. StatusEntrega: PedidoRecebido=1, EmSeparacao=2, EmRotaEntrega=3, Entregue=4. Valor Mínimo e Valor Máximo")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetTotalPedidos(
+            [FromQuery] Status? status = null,
+            [FromQuery] StatusEntrega? statusEntrega = null,
+            [FromQuery] decimal? valorMinimo = null,
+            [FromQuery] decimal? valorMaximo = null)
+        {
+            var total = await _service.ObterTotal(status, statusEntrega, valorMinimo, valorMaximo);
+            return Ok(new Dictionary<string, object> { ["total de pedidos"] = total });
+        }
+
         [HttpGet]
         [EndpointSummary("Listar todos os pedidos")]
         [EndpointDescription("Retorna a lista completa de pedidos cadastrados no sistema.")]

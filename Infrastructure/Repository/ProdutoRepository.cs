@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Properties;
 using Infrastructure.Data;
 using Infrastructure.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -51,5 +52,10 @@ namespace Infrastructure.Repository
             await _context.Produtos
                 .Where(p => p.DataCriacao >= dataInicial && p.DataCriacao <= dataFinal)
                 .ToListAsync();
+
+        public async Task<int> CountTotal(Status? status) =>
+            await _context.Produtos
+                .Where(p => status == null || p.Status == status)
+                .CountAsync();
     }
 }

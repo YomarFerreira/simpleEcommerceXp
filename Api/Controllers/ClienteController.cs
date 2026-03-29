@@ -36,6 +36,16 @@ namespace Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet("total")]
+        [EndpointSummary("Quantidade de clientes cadastrados")]
+        [EndpointDescription("Retorna o total de clientes. Filtre por status: Ativo=1, Inativo=2. Sem filtro retorna todos.")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetTotalClientes([FromQuery] Status? status = null)
+        {
+            var total = await _service.ObterTotal(status);
+            return Ok(new Dictionary<string, object> { ["total de clientes"] = total });
+        }
+
         [HttpGet]
         [EndpointSummary("Listar todos os clientes")]
         [EndpointDescription("Retorna a lista completa de clientes cadastrados no sistema.")]

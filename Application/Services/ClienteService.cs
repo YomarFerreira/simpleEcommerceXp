@@ -29,5 +29,8 @@ namespace Application.Services
 
         public async Task<Cliente?> ObterPorTelefone(string telefone) =>
             await _repository.GetByTelefone(telefone);
+
+        public async Task<int> ObterTotal(Status? status) =>
+            await _repository.CountTotal(status);
     }
 }

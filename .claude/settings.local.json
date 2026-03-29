@@ -17,7 +17,8 @@
       "WebFetch(domain:community.render.com)",
       "WebFetch(domain:feedback.render.com)",
       "WebFetch(domain:www.npgsql.org)",
-      "Bash(xargs cat:*)"
+      "Bash(xargs cat:*)",
+      "Bash(find '/c/Users/yomar/Documents/@Pos Graduação XP Educação/BootCamp 2/Módulo 5 - Desafio/Atividade/ProjectEcommerce/Application/Validators' -name *.cs)"
     ]
   }
 }

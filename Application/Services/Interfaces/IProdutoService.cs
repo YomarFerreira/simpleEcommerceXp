@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Properties;
 
 namespace Application.Services.Interfaces
 {
@@ -8,5 +9,6 @@ namespace Application.Services.Interfaces
         Task<List<Produto>> ObterTodos();
         Task<List<Produto>> ObterPorNome(string parteNome);
         Task<List<Produto>> ObterPorPeriodo(DateTime dataInicial, DateTime dataFinal);
+        Task<int> ObterTotal(Status? status);
     }
 }

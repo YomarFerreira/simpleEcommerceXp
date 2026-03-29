@@ -59,5 +59,10 @@ namespace Infrastructure.Repository
         public async Task<Cliente?> GetByTelefone(string telefone) =>
             await _context.Clientes
                 .FirstOrDefaultAsync(c => c.Telefone == telefone);
+
+        public async Task<int> CountTotal(Status? status) =>
+            await _context.Clientes
+                .Where(c => status == null || c.Status == status)
+                .CountAsync();
     }
 }

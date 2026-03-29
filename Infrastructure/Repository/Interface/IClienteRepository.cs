@@ -14,5 +14,6 @@ namespace Infrastructure.Repository.Interface
         Task<List<Cliente>> GetByNome(string parteNome);
         Task<Cliente?> GetByEmail(string email);
         Task<Cliente?> GetByTelefone(string telefone);
+        Task<int> CountTotal(Status? status);
     }
 }

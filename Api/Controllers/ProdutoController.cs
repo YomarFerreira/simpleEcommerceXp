@@ -33,6 +33,16 @@ namespace Api.Controllers
             _ajustarEstoqueHandler = ajustarEstoqueHandler;
         }
 
+        [HttpGet("total")]
+        [EndpointSummary("Quantidade de produtos cadastrados")]
+        [EndpointDescription("Retorna o total de produtos. Filtre por status: Ativo=1, Inativo=2. Sem filtro retorna todos.")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetTotalProdutos([FromQuery] Status? status = null)
+        {
+            var total = await _service.ObterTotal(status);
+            return Ok(new Dictionary<string, object> { ["total de produtos"] = total });
+        }
+
         [HttpGet]
         [EndpointSummary("Listar todos os produtos")]
         [EndpointDescription("Retorna a lista completa de produtos cadastrados no sistema.")]

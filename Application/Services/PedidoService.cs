@@ -29,5 +29,8 @@ namespace Application.Services
 
         public async Task<List<Pedido>> ObterPorStatusEntrega(StatusEntrega statusEntrega) =>
             await _repository.GetByStatusEntrega(statusEntrega);
+
+        public async Task<int> ObterTotal(Status? status, StatusEntrega? statusEntrega, decimal? valorMinimo, decimal? valorMaximo) =>
+            await _repository.CountTotal(status, statusEntrega, valorMinimo, valorMaximo);
     }
 }

@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Properties;
 
 namespace Infrastructure.Repository.Interface
 {
@@ -11,5 +12,6 @@ namespace Infrastructure.Repository.Interface
         Task<List<Produto>> GetAll();
         Task<List<Produto>> GetByNome(string parteNome);
         Task<List<Produto>> GetByPeriodo(DateTime dataInicial, DateTime dataFinal);
+        Task<int> CountTotal(Status? status);
     }
 }

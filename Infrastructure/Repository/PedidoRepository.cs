@@ -62,5 +62,13 @@ namespace Infrastructure.Repository
             await _context.Pedidos
                 .Where(p => p.StatusEntrega == statusEntrega)
                 .ToListAsync();
+
+        public async Task<int> CountTotal(Status? status, StatusEntrega? statusEntrega, decimal? valorMinimo, decimal? valorMaximo) =>
+            await _context.Pedidos
+                .Where(p => status == null        || p.Status == status)
+                .Where(p => statusEntrega == null || p.StatusEntrega == statusEntrega)
+                .Where(p => valorMinimo == null   || p.ValorFinal >= valorMinimo)
+                .Where(p => valorMaximo == null   || p.ValorFinal <= valorMaximo)
+                .CountAsync();
     }
 }
